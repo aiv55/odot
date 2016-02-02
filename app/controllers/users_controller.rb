@@ -17,8 +17,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+        format.html { redirect_to todo_lists_path }
         format.json { render :show, status: :created, location: @user }
+        flash[:success] = "Thanks for signing up!"
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
