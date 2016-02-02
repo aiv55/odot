@@ -1,8 +1,13 @@
 require 'spec_helper'
 
 describe "Completing todo items" do
+    let(:user) { create(:user) }
     let!(:todo_list) { TodoList.create(title: "Grocery list", description: "Groceries") }
     let!(:todo_item) { todo_list.todo_items.create(content: "Milk") }
+    
+    before do
+        sign_in user, password: "treehouse1"
+    end
    
     it "is successful when marking a single item complete" do
         expect(todo_item.completed_at).to be_nil
