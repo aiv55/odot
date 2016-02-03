@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe "Editing todo lists" do
-    let(:user) { create(:user) }
-    let!(:todo_list) { TodoList.create(title: "Groceries", description: "Grocery list.")}
+    let(:user) { todo_list.user }
+    let!(:todo_list) { create(:todo_list) }
     
     def update_todo_list(options={})
         options[:title] ||= "New title"
